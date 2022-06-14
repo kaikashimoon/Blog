@@ -3,15 +3,16 @@ const router = express.Router()
 const {createPost,
     getPost,
     updatePost,
-    deletePost
+    deletePost,
+    getAllPost
 } = require('../controllers/postsController')
 const { checkDuplicateAndRequired } = require('../middlewares/Post')
 
-
-router.get('/', getPost)
+router.get('/', getAllPost)
+router.get('/:id', getPost)
 router.post('/', checkDuplicateAndRequired, createPost)
-router.put('/', updatePost)
-router.delete('/', deletePost)
+router.put('/:id',checkDuplicateAndRequired, updatePost)
+router.delete('/:id', deletePost)
 
 
 module.exports = router
