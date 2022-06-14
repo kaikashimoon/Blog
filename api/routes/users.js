@@ -1,12 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const {
-
+const { updateUser,
+    deleteUser,
+    getUser
 } = require('../controllers/usersControllers')
+const { checkDuplicateUsernameOrEmail } = require('../middlewares/verifySignup')
 
 
-
-router.get('/',)
-
+router.get('/:id', getUser )
+router.put('/:id', checkDuplicateUsernameOrEmail, updateUser)
+router.delete('/:id', deleteUser)
 
 module.exports = router
